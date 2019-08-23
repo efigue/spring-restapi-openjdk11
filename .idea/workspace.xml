@@ -1,7 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="260814b6-9659-42ee-af06-bd4460393c98" name="Default Changelist" comment="" />
+    <list default="true" id="260814b6-9659-42ee-af06-bd4460393c98" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/src/main/java/api/security/WebSecurityConfig.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/api/security/jwt/AccountCredentials.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/api/security/jwt/AuthenticatedUser.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/api/security/jwt/JWTAuthenticationFilter.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/api/security/jwt/JWTLoginFilter.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/api/security/jwt/TokenAuthenticationService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.properties" afterDir="false" />
+    </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -11,8 +22,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Class" />
         <option value="Interface" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -26,20 +37,14 @@
       </MavenImportingSettings>
     </option>
   </component>
-  <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="149" />
-    <option name="y" value="23" />
-    <option name="width" value="1291" />
-    <option name="height" value="806" />
-  </component>
   <component name="ProjectId" id="1Ph9mzGi5I9IWenG4xprseFvexd" />
   <component name="PropertiesComponent">
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
     <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1566315143114" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
-    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../treenet" />
+    <property name="settings.editor.selected.configurable" value="reference.projectsettings.compiler.javacompiler" />
   </component>
   <component name="RecentsManager">
     <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
@@ -58,7 +63,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="Application.EntryPoint">
     <configuration name="EntryPoint" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="api.EntryPoint" />
       <module name="spring-restapi-openjdk11" />
@@ -68,6 +73,13 @@
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="EntryPoint" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
+      <module name="spring-restapi-openjdk11" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="api.EntryPoint" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -88,8 +100,28 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1555284186107</updated>
-      <workItem from="1566315625504" duration="85000" />
+      <workItem from="1566315625504" duration="2661000" />
+      <workItem from="1566322454584" duration="239000" />
+      <workItem from="1566322823639" duration="623000" />
+      <workItem from="1566323557807" duration="565000" />
+      <workItem from="1566325117702" duration="41000" />
+      <workItem from="1566325218245" duration="7357000" />
+      <workItem from="1566403400685" duration="1357000" />
+      <workItem from="1566406207875" duration="1218000" />
+      <workItem from="1566425839285" duration="722000" />
+      <workItem from="1566429557359" duration="1953000" />
+      <workItem from="1566486000741" duration="4988000" />
+      <workItem from="1566575155513" duration="1183000" />
+      <workItem from="1566590846552" duration="13755000" />
     </task>
+    <task id="LOCAL-00001" summary="gitignore target">
+      <created>1566315903153</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1566315903153</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -100,11 +132,17 @@
       <map>
         <entry key="MAIN">
           <value>
-            <State />
+            <State>
+              <option name="COLUMN_ORDER" />
+            </State>
           </value>
         </entry>
       </map>
     </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="gitignore target" />
+    <option name="LAST_COMMIT_MESSAGE" value="gitignore target" />
   </component>
   <component name="masterDetails">
     <states>
