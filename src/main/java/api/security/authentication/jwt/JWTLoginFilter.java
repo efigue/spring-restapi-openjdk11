@@ -1,4 +1,4 @@
-package api.security.jwt;
+package api.security.authentication.jwt;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.security.authentication.AuthenticationManager;

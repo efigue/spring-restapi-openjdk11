@@ -1,4 +1,4 @@
-package api.security.jwt;
+package api.security.authentication.jwt;
 
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;

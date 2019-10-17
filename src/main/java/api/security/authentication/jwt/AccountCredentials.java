@@ -1,4 +1,4 @@
-package api.security.jwt;
+package api.security.authentication.jwt;
 
 public class AccountCredentials {
     private String username;

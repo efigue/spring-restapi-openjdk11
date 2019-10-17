@@ -1,16 +1,19 @@
-package api.security;
+package api.security.authentication;
 
-import api.security.jwt.JWTAuthenticationFilter;
-import api.security.jwt.JWTLoginFilter;
+import api.security.authentication.jwt.JWTAuthenticationFilter;
+import api.security.authentication.jwt.JWTLoginFilter;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
 import org.springframework.ldap.core.support.BaseLdapPathContextSource;
 import org.springframework.ldap.core.support.LdapContextSource;
+import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
+import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.ldap.authentication.ad.ActiveDirectoryLdapAuthenticationProvider;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
 @Configuration
@@ -52,5 +55,4 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         bean.afterPropertiesSet();
         return bean;
     }
-
 }
