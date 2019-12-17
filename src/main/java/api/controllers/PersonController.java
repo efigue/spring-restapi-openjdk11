@@ -41,9 +41,9 @@ public class PersonController implements ApiController <Person> {
     @PutMapping("/people/{id}")
     public Person update(@PathVariable String id, @RequestBody Map<String, String> body){
         return peopleMockData.updatePerson(
-                Integer.parseInt(body.get("id")),
-                body.get("name"),
-                Integer.parseInt(body.get("age"))
+            Integer.parseInt(body.get("id")),
+            body.get("name"),
+            Integer.parseInt(body.get("age"))
         );
     }
 
