@@ -14,6 +14,7 @@ public class PersonController implements ApiController <Person> {
     private PeopleMockData peopleMockData = PeopleMockData.getInstance();
 
     @GetMapping("/people")
+    @PreAuthorize("hasRole('ROLE_SEEPEOPLE')")
     public List<Person> index(){
         return peopleMockData.fetchPeople();
     }
