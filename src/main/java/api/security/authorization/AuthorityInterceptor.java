@@ -37,9 +37,11 @@ public class AuthorityInterceptor implements HandlerInterceptor {
         Set<GrantedAuthority> authorities = new HashSet<>();
 
         if(auth.isAuthenticated()) {
-//            authorities.add(new SimpleGrantedAuthority("ROLE_SEEPEOPLE"));
             getUserGroups(auth.getName()).forEach(group -> authorities.add(getGrantedAuthorityFromGroup((String)group)));
         }
+
+        Authentication newAuth = new UsernamePasswordAuthenticationToken(auth.getPrincipal(), auth.getCredentials(), authorities);
+        SecurityContextHolder.getContext().setAuthentication(newAuth);
 
         return true;
     }
@@ -47,7 +49,10 @@ public class AuthorityInterceptor implements HandlerInterceptor {
     private ArrayList<?> getUserGroups(String userID) {
         return ldapTemplate.search (
             query().where("sAMAccountName").is(userID),
-            (AttributesMapper<ArrayList<?>>) attrs -> Collections.list(attrs.get("memberOf").getAll())
+            (AttributesMapper<ArrayList<?>>) attrs -> {
+                var list = attrs.get("memberOf");
+                return list != null ? Collections.list(list.getAll()) : new ArrayList<>();
+            }
         ).get(0);
     }
 

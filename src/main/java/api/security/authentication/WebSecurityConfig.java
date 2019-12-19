@@ -2,7 +2,6 @@ package api.security.authentication;
 
 import api.security.authentication.jwt.JWTAuthenticationFilter;
 import api.security.authentication.jwt.JWTLoginFilter;
-import api.security.authentication.jwt.LdapUserDetailsContextMapper;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
@@ -13,16 +12,13 @@ import org.springframework.security.config.annotation.method.configuration.Enabl
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
-import org.springframework.security.ldap.search.FilterBasedLdapUserSearch;
-import org.springframework.security.ldap.userdetails.*;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
 @Configuration
 @EnableWebSecurity
-@EnableGlobalMethodSecurity(prePostEnabled = true)
+@EnableGlobalMethodSecurity(prePostEnabled = true, proxyTargetClass = true)
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
-    //todo: do i need this tag here
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.headers().cacheControl(); //disable caching
@@ -42,11 +38,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     public void configure(AuthenticationManagerBuilder auth) throws Exception {
         auth.ldapAuthentication()
         .userSearchFilter("(sAMAccountName={0})")
-//            .userDetailsContextMapper(userDetailsContextMapper()) //put this back if things break
-        .userDetailsContextMapper(new LdapUserDetailsContextMapper())
-        .contextSource(contextSource())
-        .and().userDetailsService(new LdapUserDetailsService(new FilterBasedLdapUserSearch("DC=private,DC=treetop,DC=com", "(sAMAccountName=efigue)", contextSource())));
-//            .ldapAuthoritiesPopulator(authoritiesPopulator());
+        .contextSource(contextSource());
     }
 
     @Bean
@@ -61,11 +53,4 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         return bean;
     }
 
-    @Bean
-    public LdapAuthoritiesPopulator authoritiesPopulator(){
-        DefaultLdapAuthoritiesPopulator populator = new DefaultLdapAuthoritiesPopulator(contextSource(), "");
-        populator.setSearchSubtree(true);
-        populator.setIgnorePartialResultException(true);
-        return populator;
-    }
 }
