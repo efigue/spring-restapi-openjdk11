@@ -1,4 +1,4 @@
-package api.security.authorization;
+package api.security;
 
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
