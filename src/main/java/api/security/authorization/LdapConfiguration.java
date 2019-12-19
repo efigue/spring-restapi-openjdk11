@@ -10,10 +10,10 @@ import org.springframework.stereotype.Component;
 
 @Component
 @EnableConfigurationProperties
-public class Ldap {
+public class LdapConfiguration {
     @Bean
     @ConfigurationProperties(prefix="ldap.context-source")
-    public LdapContextSource contextSourcee() {
+    public LdapContextSource contextSource() {
         return new LdapContextSource();
     }
 

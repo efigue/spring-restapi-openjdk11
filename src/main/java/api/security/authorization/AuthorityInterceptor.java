@@ -1,14 +1,8 @@
 package api.security.authorization;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.context.properties.ConfigurationProperties;
-import org.springframework.boot.context.properties.EnableConfigurationProperties;
-import org.springframework.context.annotation.Bean;
 import org.springframework.ldap.core.AttributesMapper;
-import org.springframework.ldap.core.ContextSource;
 import org.springframework.ldap.core.LdapTemplate;
-import org.springframework.ldap.core.support.LdapContextSource;
-import org.springframework.ldap.query.LdapQuery;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
@@ -17,8 +11,6 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.HandlerInterceptor;
 
-import javax.naming.NamingException;
-import javax.naming.directory.Attributes;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.util.*;
@@ -28,8 +20,12 @@ import static org.springframework.ldap.query.LdapQueryBuilder.query;
 @Component
 public class AuthorityInterceptor implements HandlerInterceptor {
 
+    private final LdapTemplate ldapTemplate;
+
     @Autowired
-    private LdapTemplate ldapTemplate;
+    public AuthorityInterceptor(LdapTemplate ldapTemplate) {
+        this.ldapTemplate = ldapTemplate;
+    }
 
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) {
@@ -47,13 +43,11 @@ public class AuthorityInterceptor implements HandlerInterceptor {
     }
 
     private ArrayList<?> getUserGroups(String userID) {
-        return ldapTemplate.search (
-            query().where("sAMAccountName").is(userID),
-            (AttributesMapper<ArrayList<?>>) attrs -> {
-                var list = attrs.get("memberOf");
-                return list != null ? Collections.list(list.getAll()) : new ArrayList<>();
-            }
-        ).get(0);
+        var mapper = (AttributesMapper<ArrayList<?>>) attrs -> {
+            var userGroups = attrs.get("memberOf");
+            return userGroups != null ? Collections.list(userGroups.getAll()) : new ArrayList<>();
+        };
+        return ldapTemplate.search(query().where("sAMAccountName").is(userID), mapper).get(0);
     }
 
     private SimpleGrantedAuthority getGrantedAuthorityFromGroup(String group) {

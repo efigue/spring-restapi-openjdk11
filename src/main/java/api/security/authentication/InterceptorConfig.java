@@ -8,12 +8,16 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 @Configuration
 public class InterceptorConfig implements WebMvcConfigurer {
-    @Autowired
+
     private AuthorityInterceptor authorityInterceptor;
+
+    @Autowired
+    public InterceptorConfig(AuthorityInterceptor authorityInterceptor) {
+        this.authorityInterceptor = authorityInterceptor;
+    }
 
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
-        System.out.println("doing this thing");
         registry.addInterceptor(authorityInterceptor);
     }
 }
