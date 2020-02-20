@@ -13,13 +13,15 @@ public class PersonController implements ApiController <Person> {
 
     private PeopleMockData peopleMockData = PeopleMockData.getInstance();
 
+    //maybe you can get this from a database, it's just a string
     @GetMapping("/people")
-    @PreAuthorize("hasRole('DevServerAdmin')")
+    @PreAuthorize("@authorizationMapping.hasAuthorizationTo('/people')")
     public List<Person> index(){
         return peopleMockData.fetchPeople();
     }
 
     @GetMapping("/people/{id}")
+    @PreAuthorize("DevServerAdmin")
     public Person show(@PathVariable String id){
         return peopleMockData.getBlogById(Integer.parseInt(id));
     }
